@@ -68,9 +68,8 @@ depaul-bootstrap-framework/
 ├── css/
 │   └── depaul-bootstrap-theme.css    # Main CSS framework (~35KB)
 ├── examples/
-│   ├── demo.html                      # Component showcase
-│   ├── portal-containers.html         # Pre-built section patterns
-│   └── starter-template.html          # Basic page template
+│   ├── style-guide.html               # Living style guide with all components
+│   └── portal-containers.html         # Pre-built section patterns
 └── README.md
 ```
 
