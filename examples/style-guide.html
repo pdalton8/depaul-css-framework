@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DePaul Bootstrap Framework - Living Style Guide</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@300;400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- DePaul Bootstrap Theme -->
+    <link rel="stylesheet" href="../css/depaul-bootstrap-theme.css">
+    
+    <!-- Bootstrap JS Bundle (required for navbar collapse) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous" defer></script>
+    
+    <!-- Prism.js for syntax highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js" defer></script>
+    
+    <style>
+        /* Style Guide specific styles */
+        .sg-section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--depaul-gray-200);
+        }
+        
+        .sg-section:last-child {
+            border-bottom: none;
+        }
+        
+        .sg-component-example {
+            padding: 2rem;
+            background-color: var(--depaul-gray-50);
+            border: 1px solid var(--depaul-gray-200);
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .sg-code-block {
+            background-color: #2d2d2d;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .sg-code-block pre {
+            margin: 0;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+        
+        .sg-code-block code {
+            font-size: 0.875rem;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .sg-color-swatch {
+            height: 100px;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--depaul-gray-200);
+        }
+        
+        .sg-token-row {
+            display: grid;
+            grid-template-columns: 250px 1fr 150px;
+            gap: 1rem;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--depaul-gray-200);
+            align-items: center;
+        }
+        
+        .sg-token-row:last-child {
+            border-bottom: none;
+        }
+        
+        .sg-token-name {
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            color: var(--depaul-blue);
+            font-weight: 600;
+        }
+        
+        .sg-token-value {
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            color: var(--depaul-gray-700);
+        }
+        
+        .sg-token-preview {
+            padding: 0.5rem;
+            border: 1px solid var(--depaul-gray-200);
+            border-radius: 0.25rem;
+            text-align: center;
+        }
+        
+        .sg-nav {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 1000;
+            border-bottom: 2px solid var(--depaul-blue);
+            padding: 1rem 0;
+        }
+        
+        .sg-nav-list {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+        
+        .sg-nav-list a {
+            color: var(--depaul-blue);
+            font-weight: 600;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+        
+        .sg-nav-list a:hover {
+            border-bottom-color: var(--depaul-blue);
+            text-decoration: none;
+        }
+        
+        .sg-typography-example {
+            margin-bottom: 1.5rem;
+        }
+        
+        .sg-grid-demo {
+            background-color: var(--depaul-blue-50);
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid var(--depaul-blue-200);
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .sg-framework-type {
+            background-color: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .sg-framework-type h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+        
+        .sg-do-dont {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .sg-do, .sg-dont {
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+        
+        .sg-do {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .sg-dont {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .sg-do h4::before {
+            content: '✓ ';
+            color: #28a745;
+        }
+        
+        .sg-dont h4::before {
+            content: '✗ ';
+            color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#" aria-label="DePaul University">
+                <img src="https://edge.sitecorecloud.io/depaulunived834-depaul9123-prod74eb-0c84/media/project/depaul/shared/logo/logo-white.svg" alt="DePaul University" style="height: 2rem;">
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero hero-primary text-center">
+        <div class="container">
+            <h1 class="mb-4">Living Style Guide</h1>
+            <p class="lead mb-4">Complete design system documentation for the DePaul Bootstrap Framework</p>
+            <p class="text-white" style="opacity: 0.9;">Version 1.0 | Last Updated: June 2026</p>
+        </div>
+    </section>
+
+    <!-- Quick Nav -->
+    <nav class="sg-nav">
+        <div class="container">
+            <ul class="sg-nav-list">
+                <li><a href="#getting-started">Getting Started</a></li>
+                <li><a href="#design-tokens">Design Tokens</a></li>
+                <li><a href="#colors">Colors</a></li>
+                <li><a href="#typography">Typography</a></li>
+                <li><a href="#grid">Grid System</a></li>
+                <li><a href="#buttons">Buttons</a></li>
+                <li><a href="#cards">Cards</a></li>
+                <li><a href="#navigation">Navigation</a></li>
+                <li><a href="#portal-containers">Portal Containers</a></li>
+                <li><a href="#utilities">Utilities</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+
+        <!-- Getting Started Section -->
+        <section id="getting-started" class="sg-section">
+            <h2 class="mb-4">Getting Started</h2>
+            
+            <h3 class="mb-3">Basic HTML Template</h3>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Your Page Title&lt;/title&gt;
+    
+    &lt;!-- Google Fonts (Required) --&gt;
+    &lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+    &lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+    &lt;link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@300;400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"&gt;
+    
+    &lt;!-- DePaul Bootstrap Theme --&gt;
+    &lt;link rel="stylesheet" href="css/depaul-bootstrap-theme.css"&gt;
+    
+    &lt;!-- Bootstrap JS (Required for navbar collapse only) --&gt;
+    &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Your content here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-4">Dependencies</h3>
+            <div class="sg-token-row">
+                <div class="sg-token-name">Google Fonts API</div>
+                <div class="sg-token-value">Required for DePaul typography (Rethink Sans & Newsreader)</div>
+                <div class="sg-token-preview">Required</div>
+            </div>
+            <div class="sg-token-row">
+                <div class="sg-token-name">Bootstrap JS Bundle</div>
+                <div class="sg-token-value">Required only for navbar collapse functionality</div>
+                <div class="sg-token-preview">Optional*</div>
+            </div>
+        </section>
+
+        <!-- Design Tokens Section -->
+        <section id="design-tokens" class="sg-section">
+            <h2 class="mb-4">Design Tokens (CSS Custom Properties)</h2>
+            <p class="lead">All design values are defined as CSS custom properties for easy customization and theming.</p>
+
+            <h3 class="mb-3 mt-4">Color Tokens</h3>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="sg-token-row" style="font-weight: 600; background-color: var(--depaul-gray-100);">
+                        <div>Variable Name</div>
+                        <div>Description</div>
+                        <div>Value</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">--depaul-blue</div>
+                        <div>Primary DePaul Blue</div>
+                        <div class="sg-token-value">#003da5</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">--depaul-navy</div>
+                        <div>Dark Navy</div>
+                        <div class="sg-token-value">#00205b</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">--depaul-blue-500</div>
+                        <div>Bright Blue Accent</div>
+                        <div class="sg-token-value">#316cf4</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">--primary-50</div>
+                        <div>Light Blue Background</div>
+                        <div class="sg-token-value">#e5ecf6</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="mb-3 mt-4">Typography Tokens</h3>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="sg-token-row" style="font-weight: 600; background-color: var(--depaul-gray-100);">
+                        <div>Variable Name</div>
+                        <div>Description</div>
+                        <div>Value</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">--font-rethink</div>
+                        <div>Primary Sans-Serif Font</div>
+                        <div class="sg-token-value">Rethink Sans</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">--font-newsreader</div>
+                        <div>Serif Font for Editorial Content</div>
+                        <div class="sg-token-value">Newsreader</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">--bs-body-font-size</div>
+                        <div>Base Font Size</div>
+                        <div class="sg-token-value">1rem (16px)</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">--bs-body-line-height</div>
+                        <div>Base Line Height</div>
+                        <div class="sg-token-value">1.6</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="mb-3 mt-4">Spacing Tokens</h3>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="sg-token-row" style="font-weight: 600; background-color: var(--depaul-gray-100);">
+                        <div>Variable Name</div>
+                        <div>Description</div>
+                        <div>Value</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">--bs-spacer</div>
+                        <div>Base Spacing Unit</div>
+                        <div class="sg-token-value">1rem (16px)</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">--bs-border-radius</div>
+                        <div>Default Border Radius</div>
+                        <div class="sg-token-value">0.375rem</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">--depaul-corner-md</div>
+                        <div>Asymmetric Corner (Signature)</div>
+                        <div class="sg-token-value">0 1.5rem 0 1.5rem</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Colors Section -->
+        <section id="colors" class="sg-section">
+            <h2 class="mb-4">Color Palette</h2>
+            
+            <h3 class="mb-3">Primary Colors</h3>
+            <div class="row mb-4">
+                <div class="col-md-3 mb-3">
+                    <div class="sg-color-swatch" style="background-color: #003da5;"></div>
+                    <h6>DePaul Blue</h6>
+                    <p class="text-muted small mb-0">#003da5</p>
+                    <code class="small">var(--depaul-blue)</code>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="sg-color-swatch" style="background-color: #00205b;"></div>
+                    <h6>DePaul Navy</h6>
+                    <p class="text-muted small mb-0">#00205b</p>
+                    <code class="small">var(--depaul-navy)</code>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="sg-color-swatch" style="background-color: #316cf4;"></div>
+                    <h6>Bright Blue</h6>
+                    <p class="text-muted small mb-0">#316cf4</p>
+                    <code class="small">var(--depaul-blue-500)</code>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="sg-color-swatch" style="background-color: #e5ecf6;"></div>
+                    <h6>Light Blue</h6>
+                    <p class="text-muted small mb-0">#e5ecf6</p>
+                    <code class="small">var(--primary-50)</code>
+                </div>
+            </div>
+
+            <h3 class="mb-3 mt-4">Neutral Grays</h3>
+            <div class="row mb-4">
+                <div class="col-md-2 mb-3">
+                    <div class="sg-color-swatch" style="background-color: #f8f9fa;"></div>
+                    <code class="small">gray-50</code>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <div class="sg-color-swatch" style="background-color: #e9ecef;"></div>
+                    <code class="small">gray-200</code>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <div class="sg-color-swatch" style="background-color: #ced4da;"></div>
+                    <code class="small">gray-400</code>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <div class="sg-color-swatch" style="background-color: #6c757d;"></div>
+                    <code class="small">gray-700</code>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <div class="sg-color-swatch" style="background-color: #495057;"></div>
+                    <code class="small">gray-800</code>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <div class="sg-color-swatch" style="background-color: #222529;"></div>
+                    <code class="small">gray-900</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography Section -->
+        <section id="typography" class="sg-section">
+            <h2 class="mb-4">Typography</h2>
+
+            <h3 class="mb-3">Font Families</h3>
+            <div class="sg-typography-example">
+                <h4 style="font-family: var(--font-rethink);">Rethink Sans - Primary Sans-Serif</h4>
+                <p style="font-family: var(--font-rethink);">The quick brown fox jumps over the lazy dog. ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</p>
+                <p class="text-muted">Used for headings, body text, UI elements, and buttons.</p>
+            </div>
+
+            <div class="sg-typography-example">
+                <h4 style="font-family: var(--font-newsreader);">Newsreader - Serif for Editorial</h4>
+                <p class="serif">The quick brown fox jumps over the lazy dog. ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789</p>
+                <p class="text-muted">Used for editorial content, long-form articles, and emphasis.</p>
+            </div>
+
+            <h3 class="mb-3 mt-5">Heading Styles</h3>
+            <div class="sg-component-example">
+                <h1>Heading 1 - 4rem (Desktop) / 3.5rem (Mobile)</h1>
+                <h2>Heading 2 - 2.5rem (Desktop) / 2rem (Mobile)</h2>
+                <h3>Heading 3 - 1.75rem</h3>
+                <h4>Heading 4 - 1.5rem</h4>
+                <h5>Heading 5 - 1.25rem</h5>
+                <h6>Heading 6 - 1rem</h6>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;!-- Or use classes --&gt;
+&lt;p class="h1"&gt;Styled as Heading 1&lt;/p&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-5">Body Text</h3>
+            <div class="sg-component-example">
+                <p>This is standard body text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p class="lead">This is lead text - larger and lighter for introductions.</p>
+                <p class="text-muted">This is muted text for secondary information.</p>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;p&gt;Standard body text&lt;/p&gt;
+&lt;p class="lead"&gt;Lead text&lt;/p&gt;
+&lt;p class="text-muted"&gt;Muted text&lt;/p&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-5">Display Headings</h3>
+            <div class="sg-component-example">
+                <p class="display-1">Display 1</p>
+                <p class="display-2">Display 2</p>
+                <p class="display-3">Display 3</p>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;p class="display-1"&gt;Display 1&lt;/p&gt;
+&lt;p class="display-2"&gt;Display 2&lt;/p&gt;</code></pre>
+            </div>
+        </section>
+
+        <!-- Grid System Section -->
+        <section id="grid" class="sg-section">
+            <h2 class="mb-4">Grid System</h2>
+            <p class="lead">12-column responsive grid with mobile-first breakpoints.</p>
+
+            <h3 class="mb-3 mt-4">Breakpoints</h3>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="sg-token-row" style="font-weight: 600; background-color: var(--depaul-gray-100);">
+                        <div>Breakpoint</div>
+                        <div>Class Prefix</div>
+                        <div>Dimensions</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">Extra Small</div>
+                        <div><code>.col-</code></div>
+                        <div class="sg-token-value">&lt; 576px</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">Small</div>
+                        <div><code>.col-sm-</code></div>
+                        <div class="sg-token-value">≥ 576px</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">Medium</div>
+                        <div><code>.col-md-</code></div>
+                        <div class="sg-token-value">≥ 768px</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">Large</div>
+                        <div><code>.col-lg-</code></div>
+                        <div class="sg-token-value">≥ 992px</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">Extra Large</div>
+                        <div><code>.col-xl-</code></div>
+                        <div class="sg-token-value">≥ 1200px</div>
+                    </div>
+                    <div class="sg-token-row">
+                        <div class="sg-token-name">XXL</div>
+                        <div><code>.col-xxl-</code></div>
+                        <div class="sg-token-value">≥ 1400px</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="mb-3 mt-4">Basic Grid Example</h3>
+            <div class="sg-component-example">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4"><div class="sg-grid-demo">col-md-4</div></div>
+                        <div class="col-md-4"><div class="sg-grid-demo">col-md-4</div></div>
+                        <div class="col-md-4"><div class="sg-grid-demo">col-md-4</div></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6"><div class="sg-grid-demo">col-md-6</div></div>
+                        <div class="col-md-6"><div class="sg-grid-demo">col-md-6</div></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12"><div class="sg-grid-demo">col-md-12</div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;div class="container"&gt;
+    &lt;div class="row"&gt;
+        &lt;div class="col-md-4"&gt;Column 1&lt;/div&gt;
+        &lt;div class="col-md-4"&gt;Column 2&lt;/div&gt;
+        &lt;div class="col-md-4"&gt;Column 3&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-4">Responsive Columns</h3>
+            <div class="sg-component-example">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-3"><div class="sg-grid-demo">Responsive</div></div>
+                        <div class="col-12 col-md-6 col-lg-3"><div class="sg-grid-demo">Responsive</div></div>
+                        <div class="col-12 col-md-6 col-lg-3"><div class="sg-grid-demo">Responsive</div></div>
+                        <div class="col-12 col-md-6 col-lg-3"><div class="sg-grid-demo">Responsive</div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;div class="row"&gt;
+    &lt;div class="col-12 col-md-6 col-lg-3"&gt;Responsive&lt;/div&gt;
+    &lt;!-- 100% on mobile, 50% on tablet, 25% on desktop --&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </section>
+
+        <!-- Buttons Section -->
+        <section id="buttons" class="sg-section">
+            <h2 class="mb-4">Buttons</h2>
+            <p class="lead">DePaul signature buttons with asymmetric rounded corners and smooth transitions.</p>
+
+            <h3 class="mb-3 mt-4">Button Variants</h3>
+            <div class="sg-component-example">
+                <button class="btn btn-primary mb-3">Primary Button</button>
+                <button class="btn btn-secondary mb-3">Secondary Button</button>
+                <button class="btn btn-outline-primary mb-3">Outline Primary</button>
+                <div style="background-color: var(--depaul-navy); padding: 1rem; display: inline-block;">
+                    <button class="btn btn-outline-white mb-3">Outline White</button>
+                </div>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;button class="btn btn-primary"&gt;Primary Button&lt;/button&gt;
+&lt;button class="btn btn-secondary"&gt;Secondary Button&lt;/button&gt;
+&lt;button class="btn btn-outline-primary"&gt;Outline Primary&lt;/button&gt;
+&lt;button class="btn btn-outline-white"&gt;Outline White&lt;/button&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-5">Button Sizes</h3>
+            <div class="sg-component-example">
+                <button class="btn btn-primary btn-sm mb-3">Small Button</button>
+                <button class="btn btn-primary mb-3">Default Button</button>
+                <button class="btn btn-primary btn-lg mb-3">Large Button</button>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;button class="btn btn-primary btn-sm"&gt;Small&lt;/button&gt;
+&lt;button class="btn btn-primary"&gt;Default&lt;/button&gt;
+&lt;button class="btn btn-primary btn-lg"&gt;Large&lt;/button&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-5">Buttons with Arrows</h3>
+            <div class="sg-component-example">
+                <button class="btn btn-primary btn-arrow mb-3">Auto Arrow Button</button>
+                <button class="btn btn-secondary btn-arrow mb-3">Secondary Arrow</button>
+                <button class="btn btn-outline-primary btn-arrow mb-3">Outline Arrow</button>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;button class="btn btn-primary btn-arrow"&gt;Auto Arrow Button&lt;/button&gt;
+&lt;!-- Arrow is added automatically with CSS --&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-5">Button States</h3>
+            <div class="sg-component-example">
+                <button class="btn btn-primary mb-3">Normal State</button>
+                <button class="btn btn-primary mb-3" disabled>Disabled State</button>
+                <button class="btn btn-primary disabled mb-3">Disabled Class</button>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;button class="btn btn-primary"&gt;Normal&lt;/button&gt;
+&lt;button class="btn btn-primary" disabled&gt;Disabled&lt;/button&gt;
+&lt;button class="btn btn-primary disabled"&gt;Disabled Class&lt;/button&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-5">Design Specifications</h3>
+            <div class="card">
+                <div class="card-body">
+                    <ul>
+                        <li><strong>Border Radius:</strong> Asymmetric - top-right and bottom-left corners rounded (1rem)</li>
+                        <li><strong>Font Size:</strong> 1.125rem (18px)</li>
+                        <li><strong>Font Weight:</strong> 700 (Bold)</li>
+                        <li><strong>Min Width:</strong> 13.25rem</li>
+                        <li><strong>Transition:</strong> 0.5s cubic-bezier(0.19, 1, 0.22, 1)</li>
+                        <li><strong>Arrow Animation:</strong> Slides 0.375rem on hover</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cards Section -->
+        <section id="cards" class="sg-section">
+            <h2 class="mb-4">Cards</h2>
+            <p class="lead">Flexible content containers with optional DePaul signature styling.</p>
+
+            <h3 class="mb-3 mt-4">Basic Card</h3>
+            <div class="sg-component-example">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="Campus" class="card-img-top">
+                            <div class="card-body">
+                                <h3 class="card-title">Card Title</h3>
+                                <p>This is a basic card with an image, title, text content, and action button.</p>
+                                <a href="#" class="btn btn-primary btn-arrow">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;div class="card"&gt;
+    &lt;img src="image.jpg" alt="Alt text" class="card-img-top"&gt;
+    &lt;div class="card-body"&gt;
+        &lt;h3 class="card-title"&gt;Card Title&lt;/h3&gt;
+        &lt;p&gt;Card content...&lt;/p&gt;
+        &lt;a href="#" class="btn btn-primary btn-arrow"&gt;Learn More&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-5">DePaul Signature Card</h3>
+            <div class="sg-component-example">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card card-depaul">
+                            <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="Campus" class="card-img-top">
+                            <div class="card-body">
+                                <h3 class="card-title">Signature Card</h3>
+                                <p>Features asymmetric corner styling on top-right and bottom-left corners.</p>
+                                <a href="#" class="btn btn-primary btn-arrow">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;div class="card card-depaul"&gt;
+    &lt;!-- Add .card-depaul for asymmetric corners --&gt;
+    &lt;img src="image.jpg" alt="Alt text" class="card-img-top"&gt;
+    &lt;div class="card-body"&gt;
+        &lt;h3 class="card-title"&gt;Signature Card&lt;/h3&gt;
+        &lt;p&gt;Card content...&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-5">Card Without Image</h3>
+            <div class="sg-component-example">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Text-Only Card</h3>
+                                <p>Cards work great without images too. Perfect for callouts, statistics, or informational content.</p>
+                                <a href="#" class="btn btn-outline-primary btn-arrow">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Navigation Section -->
+        <section id="navigation" class="sg-section">
+            <h2 class="mb-4">Navigation</h2>
+            <p class="lead">Responsive navbar with Bootstrap collapse functionality and DePaul branding.</p>
+
+            <h3 class="mb-3 mt-4">Navbar Structure</h3>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;nav class="navbar navbar-expand-lg"&gt;
+    &lt;div class="container"&gt;
+        &lt;a class="navbar-brand" href="#"&gt;
+            &lt;img src="logo.svg" alt="DePaul University"&gt;
+        &lt;/a&gt;
+        
+        &lt;button class="navbar-toggler" type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#navbarNav"&gt;
+            &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+        &lt;/button&gt;
+        
+        &lt;div class="collapse navbar-collapse" id="navbarNav"&gt;
+            &lt;ul class="navbar-nav ms-auto"&gt;
+                &lt;li class="nav-item"&gt;
+                    &lt;a class="nav-link" href="#"&gt;Link&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="nav-item"&gt;
+                    &lt;a class="btn-apply" href="#"&gt;Apply&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-4">Navigation Features</h3>
+            <div class="card">
+                <div class="card-body">
+                    <ul>
+                        <li><strong>Background:</strong> DePaul Navy (#00205b)</li>
+                        <li><strong>Collapse:</strong> Uses Bootstrap's collapse.js for mobile menu</li>
+                        <li><strong>Sticky:</strong> Can be made sticky with <code>position: sticky</code></li>
+                        <li><strong>Mobile:</strong> Hamburger icon transforms to X when open</li>
+                        <li><strong>Alignment:</strong> Logo left, navigation right with <code>.ms-auto</code></li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="mb-3 mt-4">Navigation Link Styles</h3>
+            <div class="sg-component-example" style="background-color: var(--depaul-navy); padding: 2rem;">
+                <div class="navbar-nav" style="display: flex; gap: 2rem;">
+                    <a class="nav-link" href="#">Standard Link</a>
+                    <a class="nav-link nav-link-underline" href="#"><span>Underline Link</span></a>
+                    <a class="btn-apply" href="#">Apply Button</a>
+                </div>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;a class="nav-link" href="#"&gt;Standard Link&lt;/a&gt;
+&lt;a class="nav-link nav-link-underline" href="#"&gt;
+    &lt;span&gt;Underline Link&lt;/span&gt;
+&lt;/a&gt;
+&lt;a class="btn-apply" href="#"&gt;Apply Button&lt;/a&gt;</code></pre>
+            </div>
+        </section>
+
+        <!-- Portal Containers Section -->
+        <section id="portal-containers" class="sg-section">
+            <h2 class="mb-4">Portal Containers</h2>
+            <p class="lead">Pre-built section patterns that combine components into complete, reusable page sections.</p>
+
+            <h3 class="mb-3 mt-4">Hero CTA Section</h3>
+            <p>Large hero section with title, description, and multiple CTA buttons.</p>
+            <div class="sg-component-example">
+                <section class="hero-cta-section" style="margin: -2rem; width: calc(100% + 4rem);">
+                    <div class="hero-cta-section__content">
+                        <h2 class="hero-cta-section__title">One University With Unlimited Opportunity</h2>
+                        <p class="hero-cta-section__description">A single application to DePaul opens the door to hundreds of programs, world-class faculty and unlimited opportunities to build your skills and brighten your future.</p>
+                        <div class="hero-cta-section__buttons">
+                            <button class="btn btn-primary btn-arrow">Undergraduate Application</button>
+                            <button class="btn btn-primary btn-arrow">Graduate Application</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;section class="hero-cta-section"&gt;
+    &lt;div class="hero-cta-section__content"&gt;
+        &lt;h2 class="hero-cta-section__title"&gt;Your Title&lt;/h2&gt;
+        &lt;p class="hero-cta-section__description"&gt;Your description...&lt;/p&gt;
+        &lt;div class="hero-cta-section__buttons"&gt;
+            &lt;button class="btn btn-primary btn-arrow"&gt;Button 1&lt;/button&gt;
+            &lt;button class="btn btn-primary btn-arrow"&gt;Button 2&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-5">Feature Container</h3>
+            <p>Two-column layout with image and content. Available in two variants: image left (default) and image right.</p>
+            <div class="sg-component-example">
+                <section class="feature-container" style="margin: -2rem; width: calc(100% + 4rem);">
+                    <div class="feature-container__image">
+                        <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="DePaul University">
+                    </div>
+                    <div class="feature-container__content">
+                        <h2 class="feature-container__title">Lead with Head, Hands and Heart</h2>
+                        <p class="feature-container__description">DePaul's unique approach blends knowledge, action and values.</p>
+                        <div class="feature-container__buttons">
+                            <button class="btn btn-primary btn-arrow">Learn More</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;section class="feature-container"&gt;
+    &lt;div class="feature-container__image"&gt;
+        &lt;img src="image.jpg" alt="Alt text"&gt;
+    &lt;/div&gt;
+    &lt;div class="feature-container__content"&gt;
+        &lt;h2 class="feature-container__title"&gt;Title&lt;/h2&gt;
+        &lt;p class="feature-container__description"&gt;Description...&lt;/p&gt;
+        &lt;div class="feature-container__buttons"&gt;
+            &lt;button class="btn btn-primary btn-arrow"&gt;Button&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- Image Right Variant --&gt;
+&lt;section class="feature-container feature-container--image-right"&gt;
+    &lt;!-- Same structure --&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-5">Quote Banner</h3>
+            <p>Image and quote layout for testimonials or leadership quotes. Supports image left (default) and image right variants.</p>
+            <div class="sg-component-example">
+                <div class="quote-banner-wrapper" style="margin: -2rem; width: calc(100% + 4rem);">
+                    <div class="quote-banner-container img-border-radius">
+                        <section class="quote-banner">
+                            <div class="quote-banner__image-wrapper">
+                                <img src="https://dpu-p-001.sitecorecontenthub.cloud/api/public/content/7e25b85408c6483386c05a0611dee495" alt="Dr. Salma Ghanem">
+                            </div>
+                            <div class="quote-banner__content">
+                                <h2 class="quote-banner__title">Dr. Salma Ghanem, Provost</h2>
+                                <p class="quote-banner__quote">"We are designing the future of higher education, one where every student's journey is personal, supported and filled with opportunity."</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;div class="quote-banner-wrapper"&gt;
+    &lt;div class="quote-banner-container img-border-radius"&gt;
+        &lt;section class="quote-banner"&gt;
+            &lt;div class="quote-banner__image-wrapper"&gt;
+                &lt;img src="person.jpg" alt="Name"&gt;
+            &lt;/div&gt;
+            &lt;div class="quote-banner__content"&gt;
+                &lt;h2 class="quote-banner__title"&gt;Name, Title&lt;/h2&gt;
+                &lt;p class="quote-banner__quote"&gt;"Quote text..."&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Image Right Variant --&gt;
+&lt;section class="quote-banner quote-banner--image-right"&gt;
+    &lt;!-- Same structure --&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-5">Background Image + CTA</h3>
+            <p>Full-width hero with background image and content overlay. Two variants: with overlay (default) and without overlay.</p>
+            <div class="sg-component-example">
+                <section class="bg-image-cta" style="margin: -2rem; width: calc(100% + 4rem);">
+                    <div class="bg-image-cta__background">
+                        <img src="https://dpu-p-001.sitecorecontenthub.cloud/api/public/content/acb92beaae2640b0aca738c600fb422c?v=c52df55d" alt="Students">
+                    </div>
+                    <div class="bg-image-cta__hero">
+                        <p class="bg-image-cta__preheading">Program finder</p>
+                        <h2 class="bg-image-cta__title">Turn Your Passion Into a Path Forward</h2>
+                        <p class="bg-image-cta__description">Use our Program Finder to discover majors that align with your interests and goals.</p>
+                        <div class="bg-image-cta__buttons">
+                            <button class="btn btn-primary btn-arrow">Program Finder</button>
+                            <button class="btn btn-secondary btn-arrow">Learn More</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;section class="bg-image-cta"&gt;
+    &lt;div class="bg-image-cta__background"&gt;
+        &lt;img src="background.jpg" alt="Background"&gt;
+    &lt;/div&gt;
+    &lt;div class="bg-image-cta__hero"&gt;
+        &lt;p class="bg-image-cta__preheading"&gt;Eyebrow&lt;/p&gt;
+        &lt;h2 class="bg-image-cta__title"&gt;Title&lt;/h2&gt;
+        &lt;p class="bg-image-cta__description"&gt;Description...&lt;/p&gt;
+        &lt;div class="bg-image-cta__buttons"&gt;
+            &lt;button class="btn btn-primary btn-arrow"&gt;Button&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;
+
+&lt;!-- No Overlay Variant --&gt;
+&lt;section class="bg-image-cta bg-image-cta--no-overlay"&gt;
+    &lt;!-- Same structure --&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-5">Three Card Section</h3>
+            <p>Grid of three cards with header section. Perfect for events, services, or features.</p>
+            <div class="sg-component-example">
+                <section class="three-card-section" style="margin: -2rem; width: calc(100% + 4rem);">
+                    <div class="container">
+                        <div class="three-card-section__header">
+                            <h2 class="three-card-section__title">
+                                <span class="three-card-section__title--black">Upcoming </span>
+                                <span class="three-card-section__title--blue">Events</span>
+                            </h2>
+                            <p class="three-card-section__description">Join us for exclusive events and workshops.</p>
+                        </div>
+
+                        <div class="three-card-section__grid">
+                            <article class="three-card-section__card">
+                                <div class="three-card-section__card-image-wrapper">
+                                    <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="Event" class="three-card-section__card-image">
+                                </div>
+                                <div class="three-card-section__card-content">
+                                    <div class="three-card-section__card-eyebrow">NETWORKING</div>
+                                    <h3 class="three-card-section__card-name">Career Fair</h3>
+                                    <p class="three-card-section__card-title">Connect with top employers.</p>
+                                    <button class="btn btn-primary btn-sm three-card-section__card-button">Register</button>
+                                </div>
+                            </article>
+                            <article class="three-card-section__card">
+                                <div class="three-card-section__card-image-wrapper">
+                                    <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="Event" class="three-card-section__card-image">
+                                </div>
+                                <div class="three-card-section__card-content">
+                                    <div class="three-card-section__card-eyebrow">COMMUNITY</div>
+                                    <h3 class="three-card-section__card-name">Alumni Mixer</h3>
+                                    <p class="three-card-section__card-title">Network with alumni.</p>
+                                    <button class="btn btn-primary btn-sm three-card-section__card-button">Register</button>
+                                </div>
+                            </article>
+                            <article class="three-card-section__card">
+                                <div class="three-card-section__card-image-wrapper">
+                                    <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="Event" class="three-card-section__card-image">
+                                </div>
+                                <div class="three-card-section__card-content">
+                                    <div class="three-card-section__card-eyebrow">WORKSHOP</div>
+                                    <h3 class="three-card-section__card-name">Innovation Workshop</h3>
+                                    <p class="three-card-section__card-title">Learn cutting-edge skills.</p>
+                                    <button class="btn btn-primary btn-sm three-card-section__card-button">Register</button>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;section class="three-card-section"&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="three-card-section__header"&gt;
+            &lt;h2 class="three-card-section__title"&gt;
+                &lt;span class="three-card-section__title--black"&gt;Your &lt;/span&gt;
+                &lt;span class="three-card-section__title--blue"&gt;Title&lt;/span&gt;
+            &lt;/h2&gt;
+            &lt;p class="three-card-section__description"&gt;Description&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="three-card-section__grid"&gt;
+            &lt;article class="three-card-section__card"&gt;
+                &lt;div class="three-card-section__card-image-wrapper"&gt;
+                    &lt;img src="image.jpg" alt="Alt" class="three-card-section__card-image"&gt;
+                &lt;/div&gt;
+                &lt;div class="three-card-section__card-content"&gt;
+                    &lt;div class="three-card-section__card-eyebrow"&gt;CATEGORY&lt;/div&gt;
+                    &lt;h3 class="three-card-section__card-name"&gt;Card Title&lt;/h3&gt;
+                    &lt;p class="three-card-section__card-title"&gt;Description&lt;/p&gt;
+                    &lt;button class="btn btn-primary btn-sm"&gt;Button&lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/article&gt;
+            &lt;!-- Repeat for 3 cards total --&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-5">Event Schedule</h3>
+            <p>Timeline-style layout for event listings with time stamps, speaker info, and location metadata.</p>
+            <div class="sg-component-example">
+                <section class="event-schedule" style="margin: -2rem; width: calc(100% + 4rem);">
+                    <div class="container">
+                        <div class="event-schedule__header">
+                            <h2 class="event-schedule__title">Today's Schedule</h2>
+                            <p class="event-schedule__description">Join us for a day of learning and networking.</p>
+                        </div>
+
+                        <div class="event-schedule__timeline">
+                            <div class="event-schedule__item">
+                                <div class="event-schedule__time">9:00 AM</div>
+                                <div class="event-schedule__content">
+                                    <h3 class="event-schedule__event-title">Welcome & Opening Remarks</h3>
+                                    <div class="event-schedule__event-meta">
+                                        <span class="event-schedule__event-speaker">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                            </svg>
+                                            President Robert Manuel
+                                        </span>
+                                        <span class="event-schedule__event-location">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                            </svg>
+                                            Main Auditorium
+                                        </span>
+                                    </div>
+                                    <p class="event-schedule__event-description">Start your day with an inspiring welcome.</p>
+                                </div>
+                            </div>
+
+                            <div class="event-schedule__item">
+                                <div class="event-schedule__time">10:00 AM</div>
+                                <div class="event-schedule__content">
+                                    <h3 class="event-schedule__event-title">Keynote: Innovation in Education</h3>
+                                    <div class="event-schedule__event-meta">
+                                        <span class="event-schedule__event-speaker">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                            </svg>
+                                            Dr. Maria Rodriguez
+                                        </span>
+                                        <span class="event-schedule__event-location">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                            </svg>
+                                            Main Auditorium
+                                        </span>
+                                    </div>
+                                    <p class="event-schedule__event-description">Discover how technology is transforming education.</p>
+                                    <span class="event-schedule__event-tag">Keynote</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;section class="event-schedule"&gt;
+    &lt;div class="container"&gt;
+        &lt;div class="event-schedule__header"&gt;
+            &lt;h2 class="event-schedule__title"&gt;Schedule Title&lt;/h2&gt;
+            &lt;p class="event-schedule__description"&gt;Description&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="event-schedule__timeline"&gt;
+            &lt;div class="event-schedule__item"&gt;
+                &lt;div class="event-schedule__time"&gt;9:00 AM&lt;/div&gt;
+                &lt;div class="event-schedule__content"&gt;
+                    &lt;h3 class="event-schedule__event-title"&gt;Event Title&lt;/h3&gt;
+                    &lt;div class="event-schedule__event-meta"&gt;
+                        &lt;span class="event-schedule__event-speaker"&gt;
+                            &lt;svg&gt;...&lt;/svg&gt; Speaker Name
+                        &lt;/span&gt;
+                        &lt;span class="event-schedule__event-location"&gt;
+                            &lt;svg&gt;...&lt;/svg&gt; Location
+                        &lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;p class="event-schedule__event-description"&gt;Description&lt;/p&gt;
+                    &lt;span class="event-schedule__event-tag"&gt;Tag&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- Repeat for multiple events --&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-5">Spotlight Accordion</h3>
+            <p>Interactive horizontal accordion with expandable panels. Click on any panel to expand it. Includes JavaScript for interaction.</p>
+            <div class="sg-component-example">
+                <section class="spotlight-accordion" style="--total-slides: 3; margin: -2rem; width: calc(100% + 4rem);">
+                    <ul class="spotlight-accordion__list">
+                        <li class="spotlight-accordion__item">
+                            <div class="spotlight-accordion__item-bg">
+                                <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="Layered Learning">
+                            </div>
+                            <div class="spotlight-accordion__content">
+                                <h4 class="spotlight-accordion__title">Layered-Learning™</h4>
+                                <p class="spotlight-accordion__description">Our unique approach combines classroom lessons with project-based and community-based service learning.</p>
+                            </div>
+                        </li>
+                        <li class="spotlight-accordion__item active">
+                            <div class="spotlight-accordion__item-bg">
+                                <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="Classroom Learning">
+                            </div>
+                            <div class="spotlight-accordion__content">
+                                <h4 class="spotlight-accordion__title">Classroom Learning</h4>
+                                <p class="spotlight-accordion__description">With a 17:1 student-to-faculty ratio, classroom learning is not a distant lecture but a living dialogue.</p>
+                                <button class="btn btn-secondary btn-arrow">Meet Our Faculty</button>
+                            </div>
+                        </li>
+                        <li class="spotlight-accordion__item">
+                            <div class="spotlight-accordion__item-bg">
+                                <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="Service Learning">
+                            </div>
+                            <div class="spotlight-accordion__content">
+                                <h4 class="spotlight-accordion__title">Project Based Learning</h4>
+                                <p class="spotlight-accordion__description">We challenge students to learn by doing, standing shoulder to shoulder with experienced faculty.</p>
+                                <button class="btn btn-secondary btn-arrow">Learn More</button>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <p class="mb-2"><strong>Note:</strong> This component requires JavaScript to function. Add this script to your page:</p>
+                    <div class="sg-code-block">
+                        <pre><code class="language-markup">&lt;script&gt;
+document.addEventListener('DOMContentLoaded', function() {
+    const items = document.querySelectorAll('.spotlight-accordion__item');
+    items.forEach(item =&gt; {
+        item.addEventListener('click', function() {
+            items.forEach(i =&gt; i.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+});
+&lt;/script&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="sg-code-block">
+                <pre><code class="language-markup">&lt;section class="spotlight-accordion" style="--total-slides: 5"&gt;
+    &lt;ul class="spotlight-accordion__list"&gt;
+        &lt;li class="spotlight-accordion__item active"&gt;
+            &lt;div class="spotlight-accordion__item-bg"&gt;
+                &lt;img src="image.jpg" alt="Alt text"&gt;
+            &lt;/div&gt;
+            &lt;div class="spotlight-accordion__content"&gt;
+                &lt;h4 class="spotlight-accordion__title"&gt;Title&lt;/h4&gt;
+                &lt;p class="spotlight-accordion__description"&gt;Description&lt;/p&gt;
+                &lt;button class="btn btn-secondary btn-arrow"&gt;Button&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/li&gt;
+        &lt;!-- Repeat for multiple items --&gt;
+    &lt;/ul&gt;
+&lt;/section&gt;</code></pre>
+            </div>
+
+            <h3 class="mb-3 mt-5">Container Variants</h3>
+            <div class="card">
+                <div class="card-body">
+                    <ul>
+                        <li><strong>Feature Container:</strong> Add <code>.feature-container--image-right</code> to flip image position</li>
+                        <li><strong>Quote Banner:</strong> Add <code>.quote-banner--image-right</code> to flip image position</li>
+                        <li><strong>Background Image + CTA:</strong> Add <code>.bg-image-cta--no-overlay</code> for solid white card without overlay</li>
+                        <li><strong>Background Color:</strong> Add <code>.bg-light</code> or other background utilities to sections</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Utilities Section -->
+        <section id="utilities" class="sg-section">
+            <h2 class="mb-4">Utility Classes</h2>
+
+            <h3 class="mb-3">Text Utilities</h3>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <p class="text-primary">Text Primary - <code>.text-primary</code></p>
+                    <p class="text-secondary">Text Secondary - <code>.text-secondary</code></p>
+                    <p class="text-muted">Text Muted - <code>.text-muted</code></p>
+                    <p class="text-white" style="background: #222;">Text White - <code>.text-white</code></p>
+                </div>
+            </div>
+
+            <h3 class="mb-3 mt-4">Text Alignment</h3>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <p class="text-start">Left aligned text - <code>.text-start</code></p>
+                    <p class="text-center">Center aligned text - <code>.text-center</code></p>
+                    <p class="text-end">Right aligned text - <code>.text-end</code></p>
+                </div>
+            </div>
+
+            <h3 class="mb-3 mt-4">Spacing Utilities</h3>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <p><code>.m-{size}</code> - Margin (all sides)</p>
+                    <p><code>.mt-{size}</code> - Margin top</p>
+                    <p><code>.mb-{size}</code> - Margin bottom</p>
+                    <p><code>.ms-{size}</code> - Margin start (left)</p>
+                    <p><code>.me-{size}</code> - Margin end (right)</p>
+                    <p><code>.mx-{size}</code> - Margin horizontal</p>
+                    <p><code>.my-{size}</code> - Margin vertical</p>
+                    <p class="text-muted">Sizes: 0, 1, 2, 3, 4, 5, auto</p>
+                </div>
+            </div>
+
+            <h3 class="mb-3 mt-4">Display Utilities</h3>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <p><code>.d-none</code> - Hide element</p>
+                    <p><code>.d-block</code> - Display as block</p>
+                    <p><code>.d-inline</code> - Display as inline</p>
+                    <p><code>.d-inline-block</code> - Display as inline-block</p>
+                    <p><code>.d-flex</code> - Display as flexbox</p>
+                    <p><code>.d-{breakpoint}-{value}</code> - Responsive display</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support Section -->
+        <section id="support" class="sg-section">
+            <h2 class="mb-4">Support & Resources</h2>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>📁 File Structure</h4>
+                            <pre style="background-color: var(--depaul-gray-50); padding: 1rem; border-radius: 0.25rem; font-size: 0.875rem;"><code>depaul-bootstrap-framework/
+├── css/
+│   └── depaul-bootstrap-theme.css
+├── examples/
+│   ├── demo.html
+│   ├── portal-containers.html
+│   ├── starter-template.html
+│   └── style-guide.html (this file)
+└── README.md</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>🔗 External Dependencies</h4>
+                            <ul>
+                                <li><strong>Google Fonts:</strong> Rethink Sans & Newsreader</li>
+                                <li><strong>Bootstrap JS:</strong> v5.3.2 (collapse only)</li>
+                                <li><strong>No jQuery required</strong></li>
+                                <li><strong>No additional CSS frameworks</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h4>Version History</h4>
+                    <ul>
+                        <li><strong>v1.0 (June 2026):</strong> Initial release with core components, grid system, and DePaul branding</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--depaul-navy); color: white; padding: 3rem 0; margin-top: 4rem;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>DePaul Bootstrap Framework</h3>
+                    <p class="text-white" style="opacity: 0.9;">A custom CSS framework for DePaul University</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="text-white" style="opacity: 0.9;">&copy; 2026 DePaul University</p>
+                    <p class="text-white" style="opacity: 0.7; font-size: 0.875rem;">Living Style Guide v1.0</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Spotlight Accordion JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const spotlightItems = document.querySelectorAll('.spotlight-accordion__item');
+            
+            spotlightItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all items
+                    spotlightItems.forEach(i => i.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

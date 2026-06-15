@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DePaul Portal Containers</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rethink+Sans:wght@300;400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- DePaul Bootstrap Theme -->
+    <link rel="stylesheet" href="../css/depaul-bootstrap-theme.css">
+    
+    <!-- Bootstrap JS Bundle (required for navbar collapse) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous" defer></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#" aria-label="DePaul University">
+                <img src="https://edge.sitecorecloud.io/depaulunived834-depaul9123-prod74eb-0c84/media/project/depaul/shared/logo/logo-white.svg" alt="DePaul University">
+            </a>
+            
+            <!-- Bootstrap mobile menu toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link nav-link-underline" href="#"><span>Request Info</span></a></li>
+                    <li class="nav-item"><a class="btn-apply" href="#">Apply</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container mt-5 pt-5 mb-5">
+            <h1 class="mb-4">DePaul Portal Containers</h1>
+            <p class="lead">Reusable section patterns combining multiple components. Copy and paste these into your portal pages.</p>
+        </div>
+
+        <!-- Container 0: Hero CTA Section -->
+        <section class="hero-cta-section">
+            <div class="hero-cta-section__content">
+                <h2 class="hero-cta-section__title">One University With Unlimited Opportunity</h2>
+                <p class="hero-cta-section__description">A single application to DePaul opens the door to hundreds of programs, world-class faculty and unlimited opportunities to build your skills and brighten your future. Whether you're exploring your passions, shaping your career path or connecting with mentors, DePaul's unique academic approach is designed to support every student's growth and success during their time here.</p>
+                <div class="hero-cta-section__buttons">
+                    <button class="btn btn-primary btn-arrow">Undergraduate Application</button>
+                    <button class="btn btn-primary btn-arrow">Graduate Application</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Container 1: Spotlight Accordion -->
+        <section class="spotlight-accordion" style="--total-slides: 5">
+            <ul class="spotlight-accordion__list">
+                <li class="spotlight-accordion__item">
+                    <div class="spotlight-accordion__item-bg">
+                        <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="Layered Learning">
+                    </div>
+                    <div class="spotlight-accordion__content">
+                        <h4 class="spotlight-accordion__title">Layered-Learning™</h4>
+                        <p class="spotlight-accordion__description">At DePaul, our unique Layered-Learning™ approach brings our Vincentian values to life by combining classroom lessons with project-based and community-based service learning.</p>
+                    </div>
+                </li>
+                <li class="spotlight-accordion__item active">
+                    <div class="spotlight-accordion__item-bg">
+                        <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="Classroom Learning">
+                    </div>
+                    <div class="spotlight-accordion__content">
+                        <h4 class="spotlight-accordion__title">Classroom Learning</h4>
+                        <p class="spotlight-accordion__description">With a 17:1 student-to-faculty ratio, classroom learning is not a distant lecture but a living dialogue, shaped by the spirit of Vincentian personalism.</p>
+                        <button class="btn btn-secondary btn-arrow">Meet Our Faculty</button>
+                    </div>
+                </li>
+                <li class="spotlight-accordion__item">
+                    <div class="spotlight-accordion__item-bg">
+                        <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="Service Learning">
+                    </div>
+                    <div class="spotlight-accordion__content">
+                        <h4 class="spotlight-accordion__title">Project Based Learning</h4>
+                        <p class="spotlight-accordion__description">Here at DePaul, we challenge students to learn by doing, standing shoulder to shoulder with faculty who have spent decades building premier partnerships across Chicago and globally.</p>
+                        <button class="btn btn-secondary btn-arrow">Learn More</button>
+                    </div>
+                </li>
+                <li class="spotlight-accordion__item">
+                    <div class="spotlight-accordion__item-bg">
+                        <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="Community Engagement">
+                    </div>
+                    <div class="spotlight-accordion__content">
+                        <h4 class="spotlight-accordion__title">Community Engagement</h4>
+                        <p class="spotlight-accordion__description">Guided by our Vincentian mission, DePaul students engage with Chicago's diverse communities, turning social justice from an ideal into lived experience.</p>
+                        <button class="btn btn-secondary btn-arrow">Get Involved</button>
+                    </div>
+                </li>
+                <li class="spotlight-accordion__item">
+                    <div class="spotlight-accordion__item-bg">
+                        <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="Research & Innovation">
+                    </div>
+                    <div class="spotlight-accordion__content">
+                        <h4 class="spotlight-accordion__title">Research & Innovation</h4>
+                        <p class="spotlight-accordion__description">From undergraduate research opportunities to cutting-edge labs, DePaul provides students the resources and mentorship to explore, discover and innovate.</p>
+                        <button class="btn btn-secondary btn-arrow">Explore Research</button>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <script>
+            // Spotlight Accordion functionality
+            document.addEventListener('DOMContentLoaded', function() {
+                const spotlightItems = document.querySelectorAll('.spotlight-accordion__item');
+                
+                spotlightItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        // Remove active class from all items
+                        spotlightItems.forEach(i => i.classList.remove('active'));
+                        // Add active class to clicked item
+                        this.classList.add('active');
+                    });
+                });
+            });
+        </script>
+
+        <!-- Container 2: Feature Container (Image Left) -->
+        <section class="feature-container">
+            <div class="feature-container__image">
+                <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="DePaul University students at graduation" loading="lazy">
+            </div>
+            <div class="feature-container__content">
+                <h2 class="feature-container__title">Lead with Head, Hands and Heart</h2>
+                <p class="feature-container__description">DePaul's unique Layered-Learning™ approach blends knowledge, action and values. By integrating classroom learning, project-based learning and community-based service learning, we go beyond the traditional liberal arts education to deepen the meaning of your degree.</p>
+                <div class="feature-container__buttons">
+                    <button class="btn btn-primary">
+                        <span>Explore Layered-Learning™</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 12 13">
+                            <path d="M0 5.35h9.131l-4.2-4.2L6 .1l6 6-6 6-1.069-1.05 4.2-4.2H0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Container 3: Feature Container (Image Right) -->
+        <section class="feature-container feature-container--image-right bg-light">
+            <div class="feature-container__image">
+                <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="DePaul University campus" loading="lazy">
+            </div>
+            <div class="feature-container__content">
+                <h2 class="feature-container__title">Discover Your Path</h2>
+                <p class="feature-container__description">With over 300 programs across 10 colleges and schools, DePaul offers the resources of a large university with the personal attention of a small college. Our faculty are not just teachers—they're mentors dedicated to your success.</p>
+                <div class="feature-container__buttons">
+                    <button class="btn btn-primary">
+                        <span>Explore Programs</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 12 13">
+                            <path d="M0 5.35h9.131l-4.2-4.2L6 .1l6 6-6 6-1.069-1.05 4.2-4.2H0z"/>
+                        </svg>
+                    </button>
+                    <button class="btn btn-secondary">
+                        <span>Learn More</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 12 13">
+                            <path d="M0 5.35h9.131l-4.2-4.2L6 .1l6 6-6 6-1.069-1.05 4.2-4.2H0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Container 4: Quote Banner (Image Left) -->
+        <div class="quote-banner-wrapper">
+            <div class="quote-banner-container img-border-radius">
+                <section class="quote-banner">
+                    <div class="quote-banner__image-wrapper">
+                        <img src="https://dpu-p-001.sitecorecontenthub.cloud/api/public/content/7e25b85408c6483386c05a0611dee495" alt="Dr. Salma Ghanem, Provost" loading="lazy">
+                    </div>
+                    <div class="quote-banner__content">
+                        <h2 class="quote-banner__title">Dr. Salma Ghanem, Provost</h2>
+                        <p class="quote-banner__quote">"We are designing the future of higher education, one where every student's journey is personal, supported and filled with opportunity."</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Container 5: Quote Banner (Image Right) -->
+        <div class="quote-banner-wrapper">
+            <div class="quote-banner-container img-border-radius">
+                <section class="quote-banner quote-banner--image-right">
+                    <div class="quote-banner__image-wrapper">
+                        <img src="https://dpu-p-001.sitecorecontenthub.cloud/api/public/content/7e25b85408c6483386c05a0611dee495" alt="Dr. Salma Ghanem, Provost" loading="lazy">
+                    </div>
+                    <div class="quote-banner__content">
+                        <h2 class="quote-banner__title">Leadership Quote</h2>
+                        <p class="quote-banner__quote">"Excellence in education comes from dedication to every student's unique journey and potential."</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Container 6: Background Image + CTA -->
+        <section class="bg-image-cta">
+            <div class="bg-image-cta__background">
+                <img src="https://dpu-p-001.sitecorecontenthub.cloud/api/public/content/acb92beaae2640b0aca738c600fb422c?v=c52df55d" alt="Students working together" loading="lazy">
+            </div>
+            <div class="bg-image-cta__hero">
+                <p class="bg-image-cta__preheading">Program finder</p>
+                <h2 class="bg-image-cta__title">Turn Your Passion Into a Path Forward</h2>
+                <p class="bg-image-cta__description">Use our Program Finder to discover majors that align with your interests and goals. Not sure what fits you best? Take our Program Match Quiz and find the path that's right for you.</p>
+                <div class="bg-image-cta__buttons">
+                    <button class="btn btn-primary btn-arrow">Program Finder</button>
+                    <button class="btn btn-secondary btn-arrow">Program Match Quiz</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Container 7: Background Image + CTA (No Overlay) -->
+        <section class="bg-image-cta bg-image-cta--no-overlay">
+            <div class="bg-image-cta__background">
+                <img src="https://dpu-p-001.sitecorecontenthub.cloud/api/public/content/acb92beaae2640b0aca738c600fb422c?v=c52df55d" alt="Students working together" loading="lazy">
+            </div>
+            <div class="bg-image-cta__hero">
+                <p class="bg-image-cta__preheading">Admissions</p>
+                <h2 class="bg-image-cta__title">Start Your Journey at DePaul</h2>
+                <p class="bg-image-cta__description">Ready to become part of the nation's largest Catholic university? Whether you're a first-year student, transfer student, or graduate applicant, we're here to guide you through every step of the admissions process.</p>
+                <div class="bg-image-cta__buttons">
+                    <button class="btn btn-primary btn-arrow">Apply Now</button>
+                    <button class="btn btn-secondary btn-arrow">Request Information</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Container 8: Three Card Section -->
+        <section class="three-card-section">
+            <div class="container">
+                <div class="three-card-section__header">
+                    <h2 class="three-card-section__title">
+                        <span class="three-card-section__title--black">Upcoming </span>
+                        <span class="three-card-section__title--blue">Events</span>
+                    </h2>
+                    <p class="three-card-section__description">Join us for exclusive events, workshops, and networking opportunities designed to connect you with the DePaul community and advance your academic and professional goals.</p>
+                </div>
+
+                <div class="three-card-section__grid">
+                    <!-- Card 1 -->
+                    <article class="three-card-section__card">
+                        <div class="three-card-section__card-image-wrapper">
+                            <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="DePaul Career Fair" class="three-card-section__card-image" loading="lazy">
+                        </div>
+                        <div class="three-card-section__card-content">
+                            <div class="three-card-section__card-eyebrow">NETWORKING</div>
+                            <h3 class="three-card-section__card-name">Spring Career Fair</h3>
+                            <p class="three-card-section__card-title">Connect with top employers and explore internship and career opportunities across all industries.</p>
+                            <button class="btn btn-primary btn-sm three-card-section__card-button">Register Now</button>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="three-card-section__card">
+                        <div class="three-card-section__card-image-wrapper">
+                            <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="Alumni Mixer" class="three-card-section__card-image" loading="lazy">
+                        </div>
+                        <div class="three-card-section__card-content">
+                            <div class="three-card-section__card-eyebrow">COMMUNITY</div>
+                            <h3 class="three-card-section__card-name">Alumni Mixer</h3>
+                            <p class="three-card-section__card-title">Network with successful DePaul alumni and build lasting professional relationships.</p>
+                            <button class="btn btn-primary btn-sm three-card-section__card-button">Register Now</button>
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="three-card-section__card">
+                        <div class="three-card-section__card-image-wrapper">
+                            <img src="https://cst.brightspotcdn.com/dims4/default/16e803d/2147483647/strip/true/crop/5794x3257+0+0/resize/820x461!/quality/90/?url=https%3A%2F%2Fchorus-production-cst-web.s3.us-east-1.amazonaws.com%2Fbrightspot%2F98%2F6e%2F4fae3ff645288a7fecad89da0074%2Fintlcollege-101725-22-1.jpg" alt="Innovation Workshop" class="three-card-section__card-image" loading="lazy">
+                        </div>
+                        <div class="three-card-section__card-content">
+                            <div class="three-card-section__card-eyebrow">WORKSHOP</div>
+                            <h3 class="three-card-section__card-name">Innovation Workshop</h3>
+                            <p class="three-card-section__card-title">Learn cutting-edge skills and methodologies from industry leaders and DePaul faculty.</p>
+                            <button class="btn btn-primary btn-sm three-card-section__card-button">Register Now</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Container 9: Event Schedule -->
+        <section class="event-schedule">
+            <div class="container">
+                <div class="event-schedule__header">
+                    <h2 class="event-schedule__title">Today's Schedule</h2>
+                    <p class="event-schedule__description">Join us for a day of learning, networking, and inspiration at the DePaul Innovation Summit.</p>
+                </div>
+
+                <div class="event-schedule__timeline">
+                    <!-- Event 1 -->
+                    <div class="event-schedule__item">
+                        <div class="event-schedule__time">9:00 AM</div>
+                        <div class="event-schedule__content">
+                            <h3 class="event-schedule__event-title">Welcome & Opening Remarks</h3>
+                            <div class="event-schedule__event-meta">
+                                <span class="event-schedule__event-speaker">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                    </svg>
+                                    President Robert Manuel
+                                </span>
+                                <span class="event-schedule__event-location">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    </svg>
+                                    Main Auditorium
+                                </span>
+                            </div>
+                            <p class="event-schedule__event-description">Start your day with an inspiring welcome from DePaul's leadership.</p>
+                        </div>
+                    </div>
+
+                    <!-- Event 2 -->
+                    <div class="event-schedule__item">
+                        <div class="event-schedule__time">10:00 AM</div>
+                        <div class="event-schedule__content">
+                            <h3 class="event-schedule__event-title">Keynote: Innovation in Education</h3>
+                            <div class="event-schedule__event-meta">
+                                <span class="event-schedule__event-speaker">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                    </svg>
+                                    Dr. Maria Rodriguez
+                                </span>
+                                <span class="event-schedule__event-location">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    </svg>
+                                    Main Auditorium
+                                </span>
+                            </div>
+                            <p class="event-schedule__event-description">Discover how technology is transforming the future of higher education.</p>
+                            <span class="event-schedule__event-tag">Keynote</span>
+                        </div>
+                    </div>
+
+                    <!-- Event 3 -->
+                    <div class="event-schedule__item">
+                        <div class="event-schedule__time">11:30 AM</div>
+                        <div class="event-schedule__content">
+                            <h3 class="event-schedule__event-title">Breakout Workshops</h3>
+                            <div class="event-schedule__event-meta">
+                                <span class="event-schedule__event-location">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    </svg>
+                                    Various Locations
+                                </span>
+                            </div>
+                            <p class="event-schedule__event-description">Choose from sessions on AI in the Classroom, Student Engagement, or Research Methods.</p>
+                            <span class="event-schedule__event-tag">Workshop</span>
+                        </div>
+                    </div>
+
+                    <!-- Event 4 -->
+                    <div class="event-schedule__item">
+                        <div class="event-schedule__time">1:00 PM</div>
+                        <div class="event-schedule__content">
+                            <h3 class="event-schedule__event-title">Lunch & Networking</h3>
+                            <div class="event-schedule__event-meta">
+                                <span class="event-schedule__event-location">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    </svg>
+                                    Student Center
+                                </span>
+                            </div>
+                            <p class="event-schedule__event-description">Connect with colleagues and speakers over a catered lunch.</p>
+                        </div>
+                    </div>
+
+                    <!-- Event 5 -->
+                    <div class="event-schedule__item">
+                        <div class="event-schedule__time">2:30 PM</div>
+                        <div class="event-schedule__content">
+                            <h3 class="event-schedule__event-title">Closing Panel & Q&A</h3>
+                            <div class="event-schedule__event-meta">
+                                <span class="event-schedule__event-location">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                    </svg>
+                                    Main Auditorium
+                                </span>
+                            </div>
+                            <p class="event-schedule__event-description">Join our expert panel for a discussion on the future of education and take your questions.</p>
+                            <span class="event-schedule__event-tag">Panel</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container my-5">
+            <hr>
+            <h2 class="mb-4">Usage</h2>
+            <p>Copy the HTML for any container above and paste it into your portal page. The containers are fully responsive and styled using the DePaul Bootstrap Theme.</p>
+            
+            <h3 class="mt-5 mb-3">Available Variants</h3>
+            <ul>
+                <li><strong>Feature Container</strong>
+                    <ul>
+                        <li><code>.feature-container</code> - Default (image on left)</li>
+                        <li><code>.feature-container--image-right</code> - Image on right</li>
+                    </ul>
+                </li>
+                <li><strong>Quote Banner</strong>
+                    <ul>
+                        <li><code>.quote-banner</code> - Default (image on left)</li>
+                        <li><code>.quote-banner--image-right</code> - Image on right</li>
+                    </ul>
+                </li>
+                <li><strong>Background Image + CTA</strong>
+                    <ul>
+                        <li><code>.bg-image-cta</code> - Full-width background with blue overlay and semi-transparent white card</li>
+                        <li><code>.bg-image-cta--no-overlay</code> - Full-width background with no overlay and solid white card with shadow</li>
+                        <li><code>.bg-image-cta--image-right</code> - Content card aligned to the right</li>
+                        <li>Perfect for call-to-action sections, program finders, or announcements</li>
+                    </ul>
+                </li>
+                <li><strong>Three Card Section</strong>
+                    <ul>
+                        <li><code>.three-card-section</code> - Flexible card grid with 3 cards in responsive layout</li>
+                        <li>Includes header with title and description</li>
+                        <li>Cards feature eyebrow text, title, description, and action button</li>
+                        <li>Perfect for events, services, features, or any three-item showcase</li>
+                    </ul>
+                </li>
+                <li><strong>Event Schedule</strong>
+                    <ul>
+                        <li><code>.event-schedule</code> - Timeline-style schedule display for conferences or day-of events</li>
+                        <li>Vertical timeline with time markers and connecting line</li>
+                        <li>Event cards include title, speaker/location metadata, description, and optional tags</li>
+                        <li>Fully responsive - adapts timeline layout for mobile devices</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3 class="mt-5 mb-3">Add Background Color</h3>
+            <p>Add utility classes like <code>.bg-light</code> or <code>.bg-primary</code> to the section for different backgrounds.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>About DePaul</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Mission & Values</a></li>
+                        <li><a href="#">History</a></li>
+                        <li><a href="#">Leadership</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Academics</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Programs</a></li>
+                        <li><a href="#">Colleges & Schools</a></li>
+                        <li><a href="#">Libraries</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Connect</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Visit Campus</a></li>
+                        <li><a href="#">Social Media</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p>&copy; 2024 DePaul University. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Spotlight Carousel JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselItems = document.querySelectorAll('.spotlight-carousel__item');
+            const carouselButtons = document.querySelectorAll('.spotlight-carousel__item-btn');
+
+            carouselButtons.forEach((button, index) => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all items
+                    carouselItems.forEach(item => {
+                        item.classList.remove('-active');
+                        item.querySelector('.spotlight-carousel__item-btn').setAttribute('aria-expanded', 'false');
+                        item.querySelector('.spotlight-carousel__item-wrap').setAttribute('aria-hidden', 'true');
+                    });
+
+                    // Add active class to clicked item
+                    const parentItem = button.closest('.spotlight-carousel__item');
+                    parentItem.classList.add('-active');
+                    button.setAttribute('aria-expanded', 'true');
+                    parentItem.querySelector('.spotlight-carousel__item-wrap').setAttribute('aria-hidden', 'false');
+
+                    // Update z-index for stacking order
+                    carouselItems.forEach((item, i) => {
+                        if (i === index) {
+                            item.style.zIndex = carouselItems.length;
+                        } else if (i < index) {
+                            item.style.zIndex = i;
+                        } else {
+                            item.style.zIndex = carouselItems.length - i - 1;
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
