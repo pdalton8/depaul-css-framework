@@ -4,12 +4,12 @@ A custom Bootstrap 5-inspired CSS framework built from scratch using DePaul Univ
 
 ## Features
 
-- ✨ **Brand-Aligned Design**: Built using official DePaul colors, typography, and design patterns
-- 📱 **Fully Responsive**: Mobile-first design with breakpoints at 576px, 768px, 992px, 1200px, and 1400px
-- 🎨 **Token-Based Theming**: CSS custom properties for easy customization
-- 🔧 **Production-Ready Components**: Buttons, cards, navigation, forms, and more
-- 📦 **Portal Containers**: Pre-built section patterns for rapid page composition
-- 🎯 **Lightweight**: ~35KB CSS with minimal JavaScript (Bootstrap collapse only)
+- **Brand-Aligned Design**: Built using official DePaul colors, typography, and design patterns
+- **Fully Responsive**: Mobile-first design with breakpoints at 576px, 768px, 992px, 1200px, and 1400px
+- **Token-Based Theming**: CSS custom properties for easy customization
+- **Production-Ready Components**: Buttons, cards, navigation, forms, and more
+- **Portal Containers**: Pre-built section patterns for rapid page composition
+- **Lightweight**: ~35KB CSS with minimal JavaScript (Bootstrap collapse only)
 
 ## Quick Start
 
