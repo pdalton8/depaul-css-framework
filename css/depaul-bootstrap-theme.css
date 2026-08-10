@@ -134,6 +134,10 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+.part_rows_container > div.part {
+  margin-bottom: 0 !important;
+}
+
 
 /* ============================================
    TYPOGRAPHY
@@ -510,7 +514,6 @@ a:hover {
 .card-link + .card-link {
   margin-left: 1rem;
 }
-}
 
 .card-header {
   padding: 1rem 1.5rem;
@@ -842,7 +845,7 @@ a:hover {
   font-family: var(--bs-font-sans-serif);
   font-weight: 700;
   font-size: 0.875rem;
-  color: #ffffff;
+  color: #ffffff !important;
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.15s ease-in-out;
@@ -886,7 +889,7 @@ a:hover {
 }
 
 .nav-link-underline:hover {
-  color: #ffffff;
+  color: #ffffff !important;
   text-decoration: none;
 }
 
@@ -901,11 +904,11 @@ a:hover {
   font-family: var(--bs-font-sans-serif);
   font-weight: 700;
   font-size: 0.875rem;
-  color: var(--depaul-blue);
-  background-color: #ffffff;
+  color: var(--depaul-blue) !important;
+  background-color: #ffffff !important;
   border: none;
   border-radius: 0 1rem;
-  text-decoration: none;
+  text-decoration: none !important;
   white-space: nowrap;
   transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
 }
@@ -917,10 +920,10 @@ a:hover {
 }
 
 .btn-apply:hover {
-  background-color: var(--depaul-navy);
-  color: #ffffff;
+  background-color: var(--depaul-navy) !important;
+  color: #ffffff !important;
   border: 1px solid #ffffff;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 /* Standard nav links */
