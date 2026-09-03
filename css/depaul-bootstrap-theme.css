@@ -2443,38 +2443,32 @@ a:hover {
 
 .subnav__list {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 0.5rem;
   list-style: none;
-  margin: 0 calc(var(--bs-spacer) * -1);
-  padding: 0 var(--bs-spacer) 0.25rem;
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-.subnav__list::-webkit-scrollbar {
-  display: none;
+  margin: 0;
+  padding: 0;
 }
 
 .subnav__list li {
-  flex-shrink: 0;
-  scroll-snap-align: start;
+  flex: 1 1 calc(50% - 0.25rem);
+}
+
+.subnav__list li:last-child {
+  flex-basis: 100%;
 }
 
 @media (min-width: 768px) {
-  .subnav__list {
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    overflow-x: visible;
+  .subnav__list li,
+  .subnav__list li:last-child {
+    flex: 0 0 auto;
   }
 }
 
 .subnav__link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   min-height: 2.75rem;
   white-space: nowrap;
   padding: 0.625rem 1.125rem;
@@ -2487,6 +2481,12 @@ a:hover {
   border-radius: var(--bs-border-radius-sm);
   text-decoration: none;
   transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+@media (min-width: 768px) {
+  .subnav__link {
+    display: inline-flex;
+  }
 }
 
 .subnav__link:hover {
