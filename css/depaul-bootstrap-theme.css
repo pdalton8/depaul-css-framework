@@ -2338,6 +2338,367 @@ a:hover {
 
 
 /* ============================================
+   PORTAL HERO (Ribbon Banner)
+   ============================================ */
+
+.portal-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 11.25rem;
+  display: flex;
+  align-items: center;
+  background-color: var(--depaul-blue);
+}
+
+@media (min-width: 992px) {
+  .portal-hero {
+    min-height: 15.625rem;
+  }
+}
+
+.portal-hero__ribbon {
+  position: absolute;
+  inset: 0;
+  background-color: var(--depaul-blue);
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 100%);
+}
+
+.portal-hero__ribbon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--bs-danger);
+  clip-path: polygon(58% 0, 100% 0, 100% 26%, 58% 45%);
+}
+
+.portal-hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.portal-hero__title {
+  font-family: var(--font-rethink);
+  font-weight: 800;
+  font-size: 2.5rem;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+  transform: rotate(-4deg);
+}
+
+@media (min-width: 992px) {
+  .portal-hero__title {
+    font-size: 4rem;
+  }
+}
+
+
+/* ============================================
+   PORTAL SUB-NAV (Contextual Account Tools)
+   ============================================ */
+
+/* Mobile-first: stacked label + edge-to-edge scrollable chip list (44px touch targets) */
+.subnav {
+  background-color: var(--depaul-gray-50);
+  border-top: 1px solid var(--depaul-gray-200);
+  border-bottom: 1px solid var(--depaul-gray-200);
+  padding: 0.875rem 0;
+  margin-bottom: 1.5rem;
+}
+
+.subnav__container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.625rem;
+}
+
+@media (min-width: 768px) {
+  .subnav__container {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+.subnav__label {
+  flex-shrink: 0;
+  font-family: var(--font-rethink);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--depaul-navy);
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .subnav__label {
+    font-size: 0.875rem;
+  }
+}
+
+.subnav__list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0 calc(var(--bs-spacer) * -1);
+  padding: 0 var(--bs-spacer) 0.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.subnav__list::-webkit-scrollbar {
+  display: none;
+}
+
+.subnav__list li {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+  .subnav__list {
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    overflow-x: visible;
+  }
+}
+
+.subnav__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  white-space: nowrap;
+  padding: 0.625rem 1.125rem;
+  font-family: var(--bs-font-sans-serif);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--depaul-blue);
+  background-color: #ffffff;
+  border: 1px solid var(--depaul-blue-100);
+  border-radius: var(--bs-border-radius-sm);
+  text-decoration: none;
+  transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+}
+
+.subnav__link:hover {
+  background-color: var(--depaul-blue);
+  border-color: var(--depaul-blue);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.subnav__link--logout {
+  color: var(--bs-danger);
+  border-color: var(--bs-danger);
+}
+
+.subnav__link--logout:hover {
+  background-color: var(--bs-danger);
+  border-color: var(--bs-danger);
+  color: #ffffff;
+}
+
+
+/* ============================================
+   CHECKLIST COMPONENT
+   ============================================ */
+
+/* Mobile-first: rows are stacked cards; grid/table layout is a progressive enhancement at sm+ */
+.checklist {
+  border: 1px solid var(--depaul-gray-200);
+  border-radius: var(--bs-border-radius);
+  overflow: hidden;
+}
+
+.checklist__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding: 1rem 1.25rem;
+}
+
+.checklist__row.checklist__row--header {
+  display: none;
+}
+
+.checklist__row + .checklist__row {
+  border-top: 1px solid var(--depaul-gray-200);
+}
+
+.checklist__row:not(.checklist__row--header):nth-of-type(even) {
+  background-color: var(--depaul-gray-50);
+}
+
+.checklist__status {
+  order: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--bs-success);
+  font-weight: 600;
+  font-size: 0.8125rem;
+}
+
+.checklist__status svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.checklist__details {
+  order: 2;
+}
+
+.checklist__details a {
+  font-weight: 600;
+}
+
+.checklist__date {
+  order: 3;
+  color: var(--depaul-gray-700);
+  font-size: 0.8125rem;
+  text-align: left;
+}
+
+@media (min-width: 576px) {
+  .checklist__row {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr 7rem;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .checklist__row.checklist__row--header {
+    display: grid;
+    background-color: var(--depaul-navy);
+    color: #ffffff;
+    font-family: var(--font-rethink);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .checklist__status,
+  .checklist__details,
+  .checklist__date {
+    order: unset;
+    font-size: 0.9375rem;
+  }
+
+  .checklist__date {
+    text-align: right;
+  }
+}
+
+
+/* ============================================
+   NOTICE BLOCK (Important Callout)
+   ============================================ */
+
+.notice-block {
+  background-color: var(--depaul-navy);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 2rem 1.5rem;
+  border-radius: 0 1.5rem 0 1.5rem;
+}
+
+@media (min-width: 992px) {
+  .notice-block {
+    padding: 2.5rem;
+  }
+}
+
+.notice-block__title {
+  font-family: var(--font-rethink);
+  font-weight: 800;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--depaul-blue-200);
+  margin: 0 0 0.75rem 0;
+}
+
+.notice-block__text {
+  font-size: 1rem;
+  line-height: 1.6rem;
+  margin: 0;
+}
+
+.notice-block__text strong {
+  color: #ffffff;
+}
+
+.notice-block__text a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+
+/* ============================================
+   CARD GRID UTILITY (Portal Info Cards)
+   ============================================ */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .card-grid--2 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 992px) {
+  .card-grid--3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Centered "stat" style card (e.g. term/major) */
+.card--stat .card-body,
+.info-card .card-body {
+  text-align: center;
+}
+
+.card--stat .card-eyebrow {
+  font-family: var(--font-rethink);
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--depaul-gray-600);
+  margin: 0 0 0.25rem 0;
+}
+
+.card--stat .card-stat-value {
+  font-family: var(--font-rethink);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--depaul-navy);
+  margin: 0;
+}
+
+/* Circular avatar for profile-style cards (e.g. admission counselor) */
+.card-avatar {
+  display: block;
+  width: 6rem;
+  height: 6rem;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+/* ============================================
    RESPONSIVE UTILITIES
    ============================================ */
 
