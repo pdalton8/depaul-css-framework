@@ -1,0 +1,296 @@
+<!-- BLUE DEMON DOMAIN ASSEMBLER: paste into one Static Content part after Global Assets -->
+<script>
+(function () {
+    const script = document.currentScript;
+    const assemblerPart = script && script.closest('.part');
+
+    function init() {
+        if (!assemblerPart || assemblerPart.closest('.portal-ignore') || assemblerPart.dataset.portalAssembled === 'true') return;
+        assemblerPart.dataset.portalAssembled = 'true';
+
+        const parts = [...document.querySelectorAll('.part')].filter((part) => !part.closest('.portal-ignore'));
+        const assetsPart = parts.find((part) => part === document.getElementById('portalGlobalAssets')?.closest('.part'));
+        const footerParts = parts.filter((part) => part.classList.contains('portal-slot--footer'));
+        const navigationPart = parts.find((part) => part.classList.contains('portal-slot--navigation'))
+            || parts.find((part) =>
+                (part.classList.contains('portal-navbar') || part.querySelector('.portal-navbar'))
+            );
+        navigationPart?.classList.add('portal-slot--navigation');
+        const checklistParts = parts.filter((part) =>
+            part.querySelector('[id^="part_checklist_"]')
+        );
+        checklistParts.forEach((part) => {
+            part.classList.remove('portal-slot--application-checklist', 'portal-slot--next-steps-checklist');
+            part.classList.add('portal-slot--status');
+        });
+        const ribbonParts = parts.filter((part) =>
+            part.classList.contains('portal-ribbon-part') || part.querySelector('.portal-ribbon')
+        );
+        ribbonParts.forEach((part) => part.classList.add('portal-ribbon-part'));
+        const railParts = parts.filter((part) => part.classList.contains('right-rail'));
+        const sourceParts = parts.filter((part) =>
+            part !== assemblerPart &&
+            part !== assetsPart &&
+            part !== navigationPart &&
+            !footerParts.includes(part) &&
+            !ribbonParts.includes(part) &&
+            !railParts.includes(part) &&
+            !assemblerPart.contains(part) &&
+            !part.closest('#slatePortalRoot')
+        );
+
+        document.body.classList.add('portal-shell');
+        assemblerPart.classList.add('portal-controller');
+        if (assetsPart) assetsPart.hidden = true;
+
+        const make = (tag, className, html) => {
+            const element = document.createElement(tag);
+            if (className) element.className = className;
+            if (html) element.innerHTML = html;
+            return element;
+        };
+
+        const nav = navigationPart?.querySelector('.portal-navbar')
+            || (navigationPart?.matches('.portal-navbar') ? navigationPart : null);
+        if (!nav) {
+            console.error('Blue Demon Domain: no Slate part containing .portal-navbar was found; assembling the page without navigation.');
+        }
+
+        const root = make('main', 'part_rows_container');
+        root.id = 'slatePortalRoot';
+        const heroPart = sourceParts.find((part) => part.classList.contains('portal-slot--hero'));
+        sourceParts.forEach((part) => root.appendChild(part));
+
+        if (nav) {
+            if (navigationPart === nav) {
+                assemblerPart.insertBefore(nav, assemblerPart.firstChild);
+            } else {
+                assemblerPart.prepend(nav);
+                navigationPart.hidden = true;
+            }
+        }
+        let ribbonAnchor = nav || assemblerPart;
+        ribbonParts.forEach((part) => {
+            const ribbon = part.querySelector('.portal-ribbon');
+            if (!ribbon) return;
+            if (nav) ribbonAnchor.after(ribbon);
+            else assemblerPart.insertBefore(ribbon, script);
+            ribbonAnchor = ribbon;
+            part.hidden = true;
+        });
+        assemblerPart.insertBefore(root, script);
+        footerParts.forEach((part) => assemblerPart.insertBefore(part, script));
+
+        const bands = [
+            { id: 'enrollment-path', eyebrow: 'Enrollment path', title: 'Status and next steps', slots: [['status', 'stack']] },
+            { id: 'payments', eyebrow: 'Payments and activities', title: 'Payments and activities', slots: [['payments', 'grid']] },
+            { id: 'scholarships', eyebrow: 'Scholarships', title: 'Scholarships', slots: [['scholarships', 'grid']] },
+            { id: 'direct-admit', eyebrow: 'Direct Admit', title: 'Direct Admit', slots: [['direct-admit', 'grid'], ['special', 'grid']] },
+            { id: 'supplemental-materials', eyebrow: 'Supplemental materials', title: 'Supplemental materials', slots: [['requirements-note', 'stack'], ['supplemental-materials', 'grid'], ['requirements', 'grid']], gridClass: 'portal-action-grid--fit' },
+            { id: 'future-forward', eyebrow: 'Future Forward', title: 'Future Forward', slots: [['future-forward', 'grid']] },
+            { id: 'honors-program', eyebrow: 'Honors program', title: 'Honors program', slots: [['honors-program', 'grid']] },
+            { id: 'auditions', eyebrow: 'Auditions', title: 'Auditions', slots: [['auditions', 'grid']], gridClass: 'portal-action-grid--fit' },
+            { id: 'student-housing', eyebrow: 'Student housing', title: 'Student housing', slots: [['housing', 'grid']] },
+            { id: 'application-messages', eyebrow: 'Application messages', title: 'Application messages', slots: [['attention', 'stack'], ['ribbon', 'stack'], ['updates', 'stack']], stackClass: 'portal-message-list' },
+            { id: 'student-resources', eyebrow: 'Student resources', title: 'Student resources', slots: [['resources', 'grid']] },
+            { id: 'more-information', eyebrow: 'More information', title: 'More information', slots: [['other', 'grid']] }
+        ];
+        const hiddenSlots = '.portal-slot--hidden, .portal-slot--account';
+        const supplementalParts = ['visit', 'search'].flatMap((slot) =>
+            [...root.querySelectorAll(':scope > .part.portal-slot--' + slot)]
+        );
+        supplementalParts.forEach((part) => part.remove());
+
+        const contentLayout = make('div', 'portal-content-layout');
+        contentLayout.id = 'portalContentLayout';
+        root.appendChild(contentLayout);
+        if (heroPart) root.insertBefore(heroPart, contentLayout);
+        sourceParts.filter((part) => part.classList.contains('application-selector')).forEach((part) => {
+            root.insertBefore(part, contentLayout);
+        });
+        if (typeof window.initializePortalApplicationContext === 'function') {
+            window.initializePortalApplicationContext();
+        }
+
+        bands.forEach((band) => {
+            const section = make('section', 'portal-band');
+            section.id = band.id;
+            const container = make('div', 'container', band.header === false ? '' : '<div class="portal-section-header"><p class="portal-section-header__eyebrow">' + band.eyebrow + '</p></div>');
+            const wrappers = {};
+            band.slots.forEach(([slot, area]) => {
+                const parts = slot === 'other'
+                    ? [...root.querySelectorAll(':scope > .part')].filter((part) => !part.matches(hiddenSlots) && !part.classList.contains('application-selector') && part !== heroPart)
+                    : [...root.querySelectorAll(':scope > .part.portal-slot--' + slot)];
+                if (slot === 'resources') {
+                    parts.sort((left, right) =>
+                        Number(right.classList.contains('portal-copy')) - Number(left.classList.contains('portal-copy'))
+                    );
+                }
+                parts.forEach((part) => {
+                    const wrapperClass = area === 'grid' ? ['portal-action-grid', band.gridClass] : ['portal-message-stack', band.stackClass];
+                    if (!wrappers[area]) wrappers[area] = container.appendChild(make('div', wrapperClass.filter(Boolean).join(' ')));
+                    if (!part.classList.contains('portal-raw')) part.classList.add('portal-part');
+                    wrappers[area].appendChild(part);
+                });
+            });
+            if (!Object.keys(wrappers).length) return;
+            section.appendChild(container);
+            contentLayout.appendChild(section);
+        });
+
+        supplementalParts.forEach((part) => contentLayout.appendChild(part));
+        const moreInformation = contentLayout.querySelector(':scope > #more-information');
+        if (moreInformation) contentLayout.appendChild(moreInformation);
+
+        const hasVisibleContent = (part, boundary) => {
+            if (part.matches('script, style, template, input[type="hidden"]')) return false;
+            const isVisibleContent = (element) => {
+                for (let current = element; current && current !== boundary; current = current.parentElement) {
+                    if (current.matches('script, style, template, [hidden]')) return false;
+                    const style = getComputedStyle(current);
+                    if (style.display === 'none' || style.visibility === 'hidden' || style.visibility === 'collapse') return false;
+                }
+                return true;
+            };
+            if (!isVisibleContent(part)) return false;
+            const walker = document.createTreeWalker(part, NodeFilter.SHOW_TEXT);
+            while (walker.nextNode()) {
+                if (walker.currentNode.textContent.trim() && isVisibleContent(walker.currentNode.parentElement)) return true;
+            }
+            const mediaOrControl = 'img, svg, canvas, video, audio, iframe, object, embed, input:not([type="hidden"]), select, textarea, button';
+            return part.matches(mediaOrControl) || [...part.querySelectorAll(mediaOrControl)].some(isVisibleContent);
+        };
+        const updateSectionVisibility = () => {
+            [...root.querySelectorAll('.hide-empty')].reverse().forEach((widget) => {
+                const empty = !hasVisibleContent(widget, widget);
+                if (widget.classList.contains('portal-empty') !== empty) {
+                    widget.classList.toggle('portal-empty', empty);
+                }
+            });
+            root.querySelectorAll(':scope > .portal-band, :scope > #portalContentLayout > .portal-band').forEach((section) => {
+                const hasContent = [...section.querySelectorAll('.portal-message-stack > .part, .portal-action-grid > .part')]
+                    .some((part) => hasVisibleContent(part, section));
+                if (section.hidden === hasContent) section.hidden = !hasContent;
+            });
+        };
+        updateSectionVisibility();
+        new MutationObserver(updateSectionVisibility).observe(root, {
+            childList: true,
+            subtree: true,
+            characterData: true,
+            attributes: true,
+            attributeFilter: ['style', 'class', 'hidden']
+        });
+
+        let rail = null;
+        if (railParts.length) {
+            rail = make('aside', 'portal-right-rail');
+            rail.setAttribute('aria-label', 'Student information');
+            railParts.forEach((part) => {
+                if (!part.classList.contains('portal-raw') && !part.querySelector('.portal-rail-stack')) part.classList.add('portal-rail-card');
+                part.classList.add('portal-rail-part');
+                rail.appendChild(part);
+            });
+            const statusSection = document.getElementById('enrollment-path');
+            if (statusSection) statusSection.after(rail);
+            else contentLayout.appendChild(rail);
+        }
+
+        nav?.querySelectorAll('a[href="#checklist"]').forEach((link) => {
+            link.setAttribute('href', '#enrollment-path');
+        });
+
+        root.querySelectorAll(':scope > .part').forEach((part) => {
+            if (part.matches(hiddenSlots)) part.hidden = true;
+        });
+
+        if (matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-in');
+                revealObserver.unobserve(entry.target);
+            }), { rootMargin: '0px 0px -8% 0px' });
+            root.querySelectorAll('.portal-band > .container').forEach((container) => {
+                container.classList.add('portal-reveal');
+                revealObserver.observe(container);
+            });
+        }
+
+        const shell = document.querySelector('.portal-shell') || document.body;
+        const getScrollRoot = () => {
+            let element = shell;
+            while (element && element !== document.body && element !== document.documentElement) {
+                const style = window.getComputedStyle(element);
+                const overflowY = style.overflowY || style.overflow;
+                if ((overflowY === 'auto' || overflowY === 'scroll' || overflowY === 'overlay') && element.scrollHeight > element.clientHeight) {
+                    return element;
+                }
+                element = element.parentElement;
+            }
+            return window;
+        };
+        const scrollRoot = getScrollRoot();
+        const getScrollTop = () => scrollRoot === window
+            ? window.scrollY || document.documentElement.scrollTop || 0
+            : scrollRoot.scrollTop || 0;
+        let navIsScrolled = false;
+        const setNavHeight = () => {
+            if (nav) document.documentElement.style.setProperty('--portal-nav-h', nav.offsetHeight + 'px');
+        };
+        const updateNavState = () => {
+            if (!nav) return;
+            const scrollTop = getScrollTop();
+            if (window.innerWidth < 992) navIsScrolled = false;
+            else if (navIsScrolled) navIsScrolled = scrollTop > 4;
+            else navIsScrolled = scrollTop > 64;
+            const scrolled = navIsScrolled;
+            if (scrollTop <= 1 && rail) rail.scrollTop = 0;
+            document.body.classList.toggle('portal-nav-scrolled', scrolled);
+            shell.classList.toggle('portal-nav-scrolled', scrolled);
+            nav.classList.toggle('portal-nav-scrolled', scrolled);
+            nav.style.setProperty('background-color', 'var(--portal-nav-bg)', 'important');
+            nav.style.setProperty('padding', scrolled ? (window.innerWidth < 768 ? '0.5rem 1rem' : '0.5rem 4.5rem') : '', 'important');
+            nav.style.setProperty('height', scrolled ? (window.innerWidth < 768 ? '3.5rem' : '3.625rem') : '', 'important');
+            setNavHeight();
+        };
+        if (nav) {
+            scrollRoot.addEventListener('scroll', updateNavState, { passive: true });
+            window.addEventListener('resize', updateNavState, { passive: true });
+            nav.addEventListener('transitionend', setNavHeight);
+            updateNavState();
+        }
+
+        document.addEventListener('click', (event) => {
+            const closeButton = event.target.closest('.portal-ribbon__close');
+            if (closeButton) closeButton.closest('.portal-ribbon').hidden = true;
+        });
+
+        const copyLink = nav?.querySelector('.portal-account-menu__copy');
+        copyLink?.addEventListener('click', async (event) => {
+            event.preventDefault();
+            const value = copyLink.getAttribute('data-copy-slate-id');
+            try {
+                await navigator.clipboard.writeText(value);
+            } catch {
+                const input = document.createElement('textarea');
+                input.value = value;
+                input.style.position = 'fixed';
+                input.style.opacity = '0';
+                document.body.appendChild(input);
+                input.select();
+                document.execCommand('copy');
+                input.remove();
+            }
+            copyLink.textContent = 'Copied';
+            copyLink.classList.add('is-copied');
+            setTimeout(() => {
+                copyLink.textContent = 'Copy';
+                copyLink.classList.remove('is-copied');
+            }, 1600);
+        });
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });
+    else init();
+})();
+</script>
